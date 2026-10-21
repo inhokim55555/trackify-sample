@@ -999,7 +999,7 @@ export function InfluencerCampaignDashboard() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setCampaignEditorOpen(true)}
-            className="flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+            className="flex items-center gap-1.5 rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
           >
             <Pencil size={15} /> Edit
           </button>
@@ -1008,7 +1008,7 @@ export function InfluencerCampaignDashboard() {
               onClick={() => setActionsMenuOpen((open) => !open)}
               aria-label="More campaign actions"
               aria-expanded={actionsMenuOpen}
-              className="flex items-center rounded-lg border border-[var(--border)] bg-white px-2.5 py-2 text-gray-700 hover:bg-gray-50"
+              className="flex items-center rounded-lg border border-(--border) bg-white px-2.5 py-2 text-gray-700 hover:bg-gray-50"
             >
               <MoreHorizontal size={17} />
             </button>
@@ -1019,7 +1019,7 @@ export function InfluencerCampaignDashboard() {
                   onClick={() => setActionsMenuOpen(false)}
                   aria-hidden="true"
                 />
-                <div className="absolute right-0 top-11 z-30 w-56 rounded-xl border border-[var(--border)] bg-white py-1.5 shadow-xl">
+                <div className="absolute right-0 top-11 z-30 w-56 rounded-xl border border-(--border) bg-white py-1.5 shadow-xl">
                   <MenuItem
                     icon={<Copy size={15} />}
                     label="Duplicate campaign"
@@ -1045,7 +1045,7 @@ export function InfluencerCampaignDashboard() {
                       setImportOpen(true);
                     }}
                   />
-                  <div className="my-1.5 border-t border-[var(--border)]" />
+                  <div className="my-1.5 border-t border-(--border)" />
                   <MenuItem
                     icon={<Trash2 size={15} />}
                     label="Delete campaign"
@@ -1077,8 +1077,8 @@ export function InfluencerCampaignDashboard() {
             <div key={entry.record.id} className="mt-2 flex flex-wrap items-center gap-2">
               <span>{entry.record.creatorName || entry.record.handle}: {entry.state === "error" ? entry.error : "Saving..."}</span>
               {entry.state === "error" ? <>
-                <button type="button" className="rounded border border-amber-300 bg-white px-2 py-1" onClick={() => { void saveRecord(entry.record).catch(() => undefined); }}>Retry save</button>
-                <button type="button" className="rounded border border-amber-300 bg-white px-2 py-1" onClick={() => openEditPanel(entry.record)}>Review draft</button>
+                <button type="button" className="rounded-sm border border-amber-300 bg-white px-2 py-1" onClick={() => { void saveRecord(entry.record).catch(() => undefined); }}>Retry save</button>
+                <button type="button" className="rounded-sm border border-amber-300 bg-white px-2 py-1" onClick={() => openEditPanel(entry.record)}>Review draft</button>
               </> : null}
             </div>
           ))}
@@ -1105,7 +1105,7 @@ export function InfluencerCampaignDashboard() {
       <div
         role="tablist"
         aria-label="Campaign sections"
-        className="mb-3 flex items-center gap-1 border-b border-[var(--border)]"
+        className="mb-3 flex items-center gap-1 border-b border-(--border)"
       >
         <TabButton
           active={activeTab === "tracker"}
@@ -1135,7 +1135,7 @@ export function InfluencerCampaignDashboard() {
         </div>
       ) : (
         <div>
-      <div className="mb-3 rounded-xl border border-[var(--border)] bg-white p-3">
+      <div className="mb-3 rounded-xl border border-(--border) bg-white p-3">
         <div className="mb-2 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gray-400">
             <SlidersHorizontal size={13} /> Search and filters
@@ -1158,7 +1158,7 @@ export function InfluencerCampaignDashboard() {
               onChange={(e) => setQuery(e.target.value)}
               aria-label="Search campaign influencers"
               placeholder="Search name, email, or Final Link URL"
-              className="w-full rounded-lg border border-[var(--border)] py-2 pl-9 pr-3 text-sm outline-none focus:border-brand-400"
+              className="w-full rounded-lg border border-(--border) py-2 pl-9 pr-3 text-sm outline-hidden focus:border-brand-400"
             />
           </label>
           <FilterSelect
@@ -1402,7 +1402,7 @@ export function EditableCampaignField({
   return (
     <div
       onDoubleClick={startEditing}
-      className="group rounded-xl border border-[var(--border)] bg-white p-3 transition hover:border-brand-200"
+      className="group rounded-xl border border-(--border) bg-white p-3 transition hover:border-brand-200"
     >
       <div className="flex items-center justify-between gap-2 text-xs font-medium text-gray-600">
         <span>{label}</span>
@@ -1410,7 +1410,7 @@ export function EditableCampaignField({
           <button
             onClick={startEditing}
             aria-label={`Edit ${label}`}
-            className="rounded p-0.5 text-gray-400 opacity-0 transition hover:text-brand-700 focus-visible:opacity-100 group-hover:opacity-100"
+            className="rounded-sm p-0.5 text-gray-400 opacity-0 transition hover:text-brand-700 focus-visible:opacity-100 group-hover:opacity-100"
           >
             <Pencil size={13} />
           </button>
@@ -1432,7 +1432,7 @@ export function EditableCampaignField({
               if (e.key === "Enter") { e.preventDefault(); save(); }
               if (e.key === "Escape") { e.preventDefault(); cancel(); }
             }}
-            className="mt-1 w-full rounded-lg border border-brand-300 bg-white px-2 py-1.5 text-sm font-semibold text-gray-900 outline-none"
+            className="mt-1 w-full rounded-lg border border-brand-300 bg-white px-2 py-1.5 text-sm font-semibold text-gray-900 outline-hidden"
           >
             {options.map((option) => (
               <option key={option} value={option}>
@@ -1453,7 +1453,7 @@ export function EditableCampaignField({
               if (e.key === "Enter") { e.preventDefault(); save(); }
               if (e.key === "Escape") { e.preventDefault(); cancel(); }
             }}
-            className="mt-1 w-full rounded-lg border border-brand-300 px-2 py-1.5 text-sm font-semibold text-gray-900 outline-none"
+            className="mt-1 w-full rounded-lg border border-brand-300 px-2 py-1.5 text-sm font-semibold text-gray-900 outline-hidden"
           />
         )
       ) : (
@@ -1479,7 +1479,7 @@ function GmailWorkflowBanner({
   const gmail = status.data?.data;
 
   return (
-    <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--border)] bg-white px-4 py-3">
+    <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--border) bg-white px-4 py-3">
       <div className="flex min-w-0 items-center gap-2">
         <Mail size={16} className={gmail?.connected ? "text-emerald-600" : "text-gray-400"} />
         <div>
@@ -1498,7 +1498,7 @@ function GmailWorkflowBanner({
       {!status.loading && !gmail?.connected ? (
         <a
           href={gmail?.configured === false ? "/settings" : "/api/gmail/oauth/start"}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
         >
           <ExternalLink size={14} />
           {gmail?.configured === false ? "Configure Gmail" : "Connect Gmail"}
@@ -1531,7 +1531,7 @@ function SummaryStats({
         <StatCard label="Stale 30+ days" value={String(stats.stale)} tone={stats.stale ? "rose" : "gray"} />
         <StatCard label="Deliverables due" value={String(stats.overdueDeliverables)} tone={stats.overdueDeliverables ? "violet" : "gray"} />
       </div>
-      <div className="flex flex-wrap gap-2 rounded-xl border border-[var(--border)] bg-white px-3 py-2">
+      <div className="flex flex-wrap gap-2 rounded-xl border border-(--border) bg-white px-3 py-2">
         {stats.statusCounts.map((status) => (
           <span
             key={status.id}
@@ -1569,7 +1569,7 @@ function CampaignWorkflowPanel({
 
   return (
     <div className="mb-3 grid gap-3 xl:grid-cols-[1fr_1fr]">
-      <section className="rounded-xl border border-[var(--border)] bg-white p-3">
+      <section className="rounded-xl border border-(--border) bg-white p-3">
         <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gray-400">
           <CalendarClock size={13} /> Follow-up queue
         </div>
@@ -1579,7 +1579,7 @@ function CampaignWorkflowPanel({
               <button
                 key={row.id}
                 onClick={() => onEdit(row)}
-                className="flex w-full items-center gap-3 rounded-lg border border-[var(--border)] px-3 py-2 text-left hover:bg-gray-50"
+                className="flex w-full items-center gap-3 rounded-lg border border-(--border) px-3 py-2 text-left hover:bg-gray-50"
               >
                 <UserRound size={15} className="text-gray-400" />
                 <div className="min-w-0 flex-1">
@@ -1599,13 +1599,13 @@ function CampaignWorkflowPanel({
             ))}
           </div>
         ) : (
-          <div className="rounded-lg border border-dashed border-[var(--border)] px-3 py-6 text-center text-sm text-gray-400">
+          <div className="rounded-lg border border-dashed border-(--border) px-3 py-6 text-center text-sm text-gray-400">
             No follow-ups or deliverables are due.
           </div>
         )}
       </section>
 
-      <section className="rounded-xl border border-[var(--border)] bg-white p-3">
+      <section className="rounded-xl border border-(--border) bg-white p-3">
         <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gray-400">
           <MessageSquare size={13} /> Recent relationship activity
         </div>
@@ -1634,7 +1634,7 @@ function CampaignWorkflowPanel({
             })}
           </div>
         ) : (
-          <div className="rounded-lg border border-dashed border-[var(--border)] px-3 py-6 text-center text-sm text-gray-400">
+          <div className="rounded-lg border border-dashed border-(--border) px-3 py-6 text-center text-sm text-gray-400">
             No influencers match the current filters yet.
           </div>
         )}
@@ -1746,7 +1746,7 @@ function CampaignPagination({
   onNext: () => void;
 }) {
   return (
-    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-[var(--border)] bg-white px-3 py-2 text-sm text-gray-500">
+    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-(--border) bg-white px-3 py-2 text-sm text-gray-500">
       <span>
         {loading ? "Loading campaign rows..." : `Showing ${start}-${end} of ${total}`}
       </span>
@@ -1754,14 +1754,14 @@ function CampaignPagination({
         <button
           onClick={onPrev}
           disabled={!hasPrev || loading}
-          className="inline-flex items-center gap-1 rounded-lg border border-[var(--border)] px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex items-center gap-1 rounded-lg border border-(--border) px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <ChevronLeft size={14} /> Previous
         </button>
         <button
           onClick={onNext}
           disabled={!hasNext || loading}
-          className="inline-flex items-center gap-1 rounded-lg border border-[var(--border)] px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex items-center gap-1 rounded-lg border border-(--border) px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Next <ChevronRight size={14} />
         </button>
@@ -1805,17 +1805,17 @@ function WorkflowStatusManager({
     <div className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50"
+        className="rounded-lg border border-(--border) px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50"
       >
         Workflow Statuses
       </button>
       {open && (
-        <div className="absolute right-0 top-9 z-20 w-[340px] rounded-xl border border-[var(--border)] bg-white p-3 shadow-xl">
+        <div className="absolute right-0 top-9 z-20 w-[340px] rounded-xl border border-(--border) bg-white p-3 shadow-xl">
           <div className="space-y-2">
             {statusDefinitions.map((definition) => (
               <div
                 key={definition.id}
-                className="flex items-center gap-2 rounded-lg border border-[var(--border)] px-2 py-1.5"
+                className="flex items-center gap-2 rounded-lg border border-(--border) px-2 py-1.5"
               >
                 <span
                   className={`rounded-full px-2 py-0.5 text-xs font-medium ring-1 ${STATUS_BADGES[definition.color]}`}
@@ -1839,12 +1839,12 @@ function WorkflowStatusManager({
               value={label}
               onChange={(e) => setLabel(e.target.value)}
               placeholder="Status name"
-              className="rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+              className="rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
             />
             <select
               value={color}
               onChange={(e) => setColor(e.target.value as StatusColor)}
-              className="rounded-lg border border-[var(--border)] bg-white px-2 py-2 text-sm outline-none focus:border-brand-400"
+              className="rounded-lg border border-(--border) bg-white px-2 py-2 text-sm outline-hidden focus:border-brand-400"
             >
               {Object.keys(STATUS_BADGES).map((option) => (
                 <option key={option} value={option}>
@@ -1954,10 +1954,10 @@ function InfluencerTable({
   const groups = useMemo(() => groupInfluencerRows(rows, segment), [rows, segment]);
   const tableMinWidth = segment === "seeding" ? "min-w-[2140px]" : "min-w-[1520px]";
   return (
-    <div className="overflow-x-auto rounded-lg border border-[var(--border)] bg-white scroll-thin">
+    <div className="overflow-x-auto rounded-lg border border-(--border) bg-white scroll-thin">
       <table className={`w-full ${tableMinWidth} text-xs`}>
         <thead>
-          <tr className="border-b border-[var(--border)] bg-gray-50 text-left text-[11px] text-gray-500">
+          <tr className="border-b border-(--border) bg-gray-50 text-left text-[11px] text-gray-500">
             <th className="w-10 px-2 py-2 font-medium"></th>
             {columns.map((column) => (
               <SortableTrackerHeader
@@ -2064,7 +2064,7 @@ function TrackerCell({
           type="checkbox"
           checked={booleanTrackerValue(trackerCellValue(row, column))}
           onChange={(e) => updateChecked(e.target.checked)}
-          className="h-3.5 w-3.5 rounded border-gray-300 text-brand-600 focus:ring-brand-400"
+          className="h-3.5 w-3.5 rounded-sm border-gray-300 text-brand-600 focus:ring-brand-400"
           aria-label={column.label}
         />
       </label>
@@ -2080,7 +2080,7 @@ function TrackerCell({
       <select
         value={value}
         onChange={(e) => update(e.target.value)}
-        className={`${column.width} border border-[var(--border)] bg-white px-1.5 py-1 text-xs outline-none focus:border-brand-400 ${
+        className={`${column.width} border border-(--border) bg-white px-1.5 py-1 text-xs outline-hidden focus:border-brand-400 ${
           column.field === "status"
             ? `font-medium ring-1 ${getStatusClasses(row.status, statusDefinitions)}`
             : "text-gray-700"
@@ -2101,7 +2101,7 @@ function TrackerCell({
       type={column.input}
       min={column.input === "number" ? "0" : undefined}
       onChange={(e) => update(e.target.value)}
-      className={`${column.width} rounded-md border border-[var(--border)] bg-white px-1.5 py-1 text-xs text-gray-700 outline-none focus:border-brand-400 ${
+      className={`${column.width} rounded-md border border-(--border) bg-white px-1.5 py-1 text-xs text-gray-700 outline-hidden focus:border-brand-400 ${
         column.align === "right" ? "text-right" : ""
       }`}
     />
@@ -2480,7 +2480,7 @@ function InfluencerGroupRows({
     <>
       <tr
         onDoubleClick={() => onEdit(row)}
-        className="border-b border-[var(--border)] hover:bg-gray-50"
+        className="border-b border-(--border) hover:bg-gray-50"
       >
         <td className="whitespace-nowrap px-2 py-1.5">
           <button
@@ -2528,7 +2528,7 @@ function InfluencerGroupRows({
         </td>
       </tr>
       {expanded ? (
-        <tr className="border-b border-[var(--border)] bg-gray-50/60">
+        <tr className="border-b border-(--border) bg-gray-50/60">
           <td colSpan={columns.length + 2} className="px-3 py-2">
             <DeliverablesDetailTable
               segment={segment}
@@ -2556,10 +2556,10 @@ function DeliverablesDetailTable({
 }) {
   const showPaidMetadata = segment !== "paid";
   return (
-    <div className="overflow-x-auto rounded-lg border border-[var(--border)] bg-white">
+    <div className="overflow-x-auto rounded-lg border border-(--border) bg-white">
       <table className={`w-full text-xs ${showPaidMetadata ? "min-w-[1080px]" : "min-w-[820px]"}`}>
         <thead>
-          <tr className="border-b border-[var(--border)] bg-gray-50 text-left text-gray-500">
+          <tr className="border-b border-(--border) bg-gray-50 text-left text-gray-500">
             <th className="px-3 py-2 font-medium">Final Link</th>
             {showPaidMetadata ? (
               <>
@@ -2577,7 +2577,7 @@ function DeliverablesDetailTable({
         </thead>
         <tbody>
           {deliverables.map((deliverable) => (
-            <tr key={`${deliverable.row.id}-${deliverable.id}`} className="border-b border-[var(--border)] last:border-0">
+            <tr key={`${deliverable.row.id}-${deliverable.id}`} className="border-b border-(--border) last:border-0">
               <td className="max-w-[260px] px-3 py-2">
                 <DeliverableTextInput
                   value={deliverable.finalLink}
@@ -2726,7 +2726,7 @@ function DeliverableTextInput({
       value={value}
       placeholder={placeholder}
       onChange={(event) => onChange(event.target.value)}
-      className="w-full rounded-md border border-[var(--border)] bg-white px-2 py-1 text-xs text-gray-700 outline-none focus:border-brand-400"
+      className="w-full rounded-md border border-(--border) bg-white px-2 py-1 text-xs text-gray-700 outline-hidden focus:border-brand-400"
     />
   );
 }
@@ -2744,7 +2744,7 @@ function DeliverableSelect({
     <select
       value={value}
       onChange={(event) => onChange(event.target.value)}
-      className="w-full rounded-md border border-[var(--border)] bg-white px-2 py-1 text-xs text-gray-700 outline-none focus:border-brand-400"
+      className="w-full rounded-md border border-(--border) bg-white px-2 py-1 text-xs text-gray-700 outline-hidden focus:border-brand-400"
     >
       {options.map((option) => (
         <option key={option || "blank"} value={option}>
@@ -2770,7 +2770,7 @@ function DeliverableCheckbox({
         type="checkbox"
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-400"
+        className="h-4 w-4 rounded-sm border-gray-300 text-brand-600 focus:ring-brand-400"
         aria-label={label}
       />
     </label>
@@ -2882,7 +2882,7 @@ function SortableHeader({
                 event.stopPropagation();
                 onClearSort();
               }}
-              className="inline-flex h-4 w-4 items-center justify-center rounded text-gray-400 hover:bg-gray-200 hover:text-gray-700"
+              className="inline-flex h-4 w-4 items-center justify-center rounded-sm text-gray-400 hover:bg-gray-200 hover:text-gray-700"
               aria-label={`Clear ${label} sort`}
             >
               <X size={10} />
@@ -2965,7 +2965,7 @@ function InfluencerPanel({
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black/30" role="dialog" aria-modal="true" aria-label={record.creatorName ? "Edit influencer" : "Add influencer"}>
       <div className="flex h-full w-full max-w-5xl flex-col bg-white shadow-xl">
-        <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-4">
+        <div className="flex items-center justify-between border-b border-(--border) px-5 py-4">
           <div>
             <h2 className="text-base font-semibold">
               {record.creatorName ? "Edit Influencer" : "Add Influencer"}
@@ -3059,7 +3059,7 @@ function InfluencerPanel({
             onChange={setDeliverables}
           />
 
-          <div className="mt-5 border-t border-[var(--border)] pt-4">
+          <div className="mt-5 border-t border-(--border) pt-4">
             <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gray-400">
               <Archive size={13} /> Fulfillment Details
             </div>
@@ -3108,7 +3108,7 @@ function InfluencerPanel({
             <textarea
               value={form.notes}
               onChange={(e) => setField("notes", e.target.value)}
-              className="mt-1 h-24 w-full resize-none rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+              className="mt-1 h-24 w-full resize-none rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
             />
           </label>
 
@@ -3125,11 +3125,11 @@ function InfluencerPanel({
         </fieldset>
 
         {saveError ? <p role="alert" className="mx-5 mb-3 rounded-lg bg-rose-50 p-3 text-sm text-rose-700">{saveError} Your draft is still here. Try saving again.</p> : null}
-        <div className="flex justify-end gap-2 border-t border-[var(--border)] px-5 py-4">
+        <div className="flex justify-end gap-2 border-t border-(--border) px-5 py-4">
           <button
             onClick={onClose}
             disabled={saving}
-            className="rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+            className="rounded-lg border border-(--border) px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
           >
             Cancel
           </button>
@@ -3149,7 +3149,7 @@ function InfluencerPanel({
 function CreatorProfileSnapshot({ record }: { record: InfluencerRecord }) {
   const latest = latestThread(record.gmailThreads);
   return (
-    <div className="mt-4 rounded-xl border border-[var(--border)] bg-gray-50/70 p-3">
+    <div className="mt-4 rounded-xl border border-(--border) bg-gray-50/70 p-3">
       <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gray-400">
         <UserRound size={13} /> Creator Profile
       </div>
@@ -3228,14 +3228,14 @@ function DeliverablesEditor({
   }
 
   return (
-    <div className="mt-5 border-t border-[var(--border)] pt-4">
+    <div className="mt-5 border-t border-(--border) pt-4">
       <div className="mb-3 flex items-center justify-between gap-3">
         <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gray-400">
           <CalendarClock size={13} /> Deliverables
         </div>
         <button
           onClick={() => onChange([...rows, createBlankDeliverable()])}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
         >
           <Plus size={15} /> Add Video
         </button>
@@ -3245,7 +3245,7 @@ function DeliverablesEditor({
         {rows.map((deliverable, index) => (
           <div
             key={deliverable.id}
-            className="rounded-xl border border-[var(--border)] bg-gray-50/50 p-3"
+            className="rounded-xl border border-(--border) bg-gray-50/50 p-3"
           >
             <div className="mb-3 flex items-center justify-between gap-3">
               <div className="text-sm font-semibold text-gray-800">
@@ -3268,7 +3268,7 @@ function DeliverablesEditor({
                   onChange={(event) =>
                     updateDeliverable(index, "finalLink", event.target.value)
                   }
-                  className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+                  className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
                 />
               </label>
               {showPaidMetadata ? (
@@ -3299,25 +3299,25 @@ function DeliverablesEditor({
                 value={deliverable.date}
                 onChange={(value) => updateDeliverable(index, "date", value)}
               />
-              <label className="flex items-center gap-2 self-end rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm text-gray-600">
+              <label className="flex items-center gap-2 self-end rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-gray-600">
                 <input
                   type="checkbox"
                   checked={deliverable.story}
                   onChange={(event) =>
                     updateDeliverable(index, "story", event.target.checked)
                   }
-                  className="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-400"
+                  className="h-4 w-4 rounded-sm border-gray-300 text-brand-600 focus:ring-brand-400"
                 />
                 Story
               </label>
-              <label className="flex items-center gap-2 self-end rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm text-gray-600">
+              <label className="flex items-center gap-2 self-end rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-gray-600">
                 <input
                   type="checkbox"
                   checked={deliverable.usageRights}
                   onChange={(event) =>
                     updateDeliverable(index, "usageRights", event.target.checked)
                   }
-                  className="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-400"
+                  className="h-4 w-4 rounded-sm border-gray-300 text-brand-600 focus:ring-brand-400"
                 />
                 Usage Rights
               </label>
@@ -3328,7 +3328,7 @@ function DeliverablesEditor({
                   onChange={(event) =>
                     updateDeliverable(index, "notes", event.target.value)
                   }
-                  className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+                  className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
                 />
               </label>
             </div>
@@ -3383,7 +3383,7 @@ function GmailThreadsEditor({
   }
 
   return (
-    <div className="mt-5 border-t border-[var(--border)] pt-4">
+    <div className="mt-5 border-t border-(--border) pt-4">
       <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gray-400">
         <Mail size={13} /> Gmail Threads
       </div>
@@ -3393,7 +3393,7 @@ function GmailThreadsEditor({
           {threads.map((thread) => (
             <div
               key={thread.id}
-              className="flex items-start gap-2 rounded-lg border border-[var(--border)] px-3 py-2"
+              className="flex items-start gap-2 rounded-lg border border-(--border) px-3 py-2"
             >
               <Mail size={14} className="mt-0.5 shrink-0 text-sky-600" />
               <div className="min-w-0 flex-1">
@@ -3472,14 +3472,14 @@ function GmailThreadsEditor({
           <textarea
             value={draft.notes}
             onChange={(e) => setDraftField("notes", e.target.value)}
-            className="mt-1 h-10 w-full resize-none rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+            className="mt-1 h-10 w-full resize-none rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
           />
         </label>
       </div>
       <button
         onClick={addThread}
         disabled={!draft.url.trim() && !draft.subject.trim()}
-        className="mt-2 inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+        className="mt-2 inline-flex items-center gap-1.5 rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
       >
         <Plus size={15} /> Attach Thread
       </button>
@@ -3526,7 +3526,7 @@ function CollectionImportPanel({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4" role="dialog" aria-modal="true" aria-label="Import from collection">
       <div className="flex max-h-[82vh] w-full max-w-xl flex-col rounded-xl bg-white shadow-xl">
-        <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-4">
+        <div className="flex items-center justify-between border-b border-(--border) px-5 py-4">
           <div>
             <h2 className="text-base font-semibold">Import from Collection</h2>
             <p className="text-xs text-gray-400">
@@ -3546,7 +3546,7 @@ function CollectionImportPanel({
               ))}
             </div>
           ) : collections.length === 0 ? (
-            <div className="rounded-lg border border-dashed border-[var(--border)] p-4 text-sm text-gray-400">
+            <div className="rounded-lg border border-dashed border-(--border) p-4 text-sm text-gray-400">
               No collections are available to import from.
             </div>
           ) : (
@@ -3554,7 +3554,7 @@ function CollectionImportPanel({
               {collections.map(({ node, depth }) => (
                 <div
                   key={node.id}
-                  className="flex items-center gap-3 rounded-lg border border-[var(--border)] px-3 py-2"
+                  className="flex items-center gap-3 rounded-lg border border-(--border) px-3 py-2"
                 >
                   <div className="min-w-0 flex-1" style={{ paddingLeft: depth * 12 }}>
                     <div className="truncate text-sm font-medium text-gray-800">
@@ -3577,10 +3577,10 @@ function CollectionImportPanel({
           )}
 
           {report ? (
-            <div className="mt-3 rounded-lg border border-[var(--border)] bg-gray-50 p-3 text-sm" aria-live="polite">
+            <div className="mt-3 rounded-lg border border-(--border) bg-gray-50 p-3 text-sm" aria-live="polite">
               <p>{report.succeeded} saved; {report.failures.length} failed from {report.source.name}.</p>
               {report.failures.map((failure) => <p key={failure.record.id} className="mt-1 text-xs text-rose-700">{failure.record.creatorName || failure.record.handle}: {failure.error}</p>)}
-              {report.failures.length > 0 ? <button type="button" disabled={busyId !== null} className="mt-2 rounded-lg border border-[var(--border)] bg-white px-3 py-2 disabled:opacity-50" onClick={() => { void handleImport(report.source, report.failures.map((failure) => failure.record)); }}>Retry failed records</button> : null}
+              {report.failures.length > 0 ? <button type="button" disabled={busyId !== null} className="mt-2 rounded-lg border border-(--border) bg-white px-3 py-2 disabled:opacity-50" onClick={() => { void handleImport(report.source, report.failures.map((failure) => failure.record)); }}>Retry failed records</button> : null}
             </div>
           ) : null}
           {error && (
@@ -3611,7 +3611,7 @@ function FilterSelect({
       value={value}
       aria-label={ariaLabel}
       onChange={(e) => onChange(e.target.value)}
-      className="rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-brand-400"
+      className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm outline-hidden focus:border-brand-400"
     >
       {children}
     </select>
@@ -3636,7 +3636,7 @@ function FormInput({
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+        className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
       />
     </label>
   );
@@ -3659,7 +3659,7 @@ function FormSelect({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-brand-400"
+        className="mt-1 w-full rounded-lg border border-(--border) bg-white px-3 py-2 text-sm outline-hidden focus:border-brand-400"
       >
         {options.map((option) => (
           <option key={option} value={option}>

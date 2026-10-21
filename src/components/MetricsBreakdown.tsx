@@ -66,9 +66,9 @@ export function MetricsBreakdown({
   }
 
   return (
-    <section className="rounded-xl border border-[var(--border)] bg-white">
-      <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3">
-        <div className="inline-flex overflow-hidden rounded-lg border border-[var(--border)] text-xs">
+    <section className="rounded-xl border border-(--border) bg-white">
+      <div className="flex items-center justify-between border-b border-(--border) px-4 py-3">
+        <div className="inline-flex overflow-hidden rounded-lg border border-(--border) text-xs">
           {[
             ["averages", "Averages"],
             ["byDay", "By Day"],
@@ -91,7 +91,7 @@ export function MetricsBreakdown({
         </h2>
         <button
           onClick={exportCsv}
-          className="flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+          className="flex items-center gap-1.5 rounded-lg border border-(--border) px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
         >
           <Download size={13} /> Export Table Data
         </button>
@@ -228,7 +228,7 @@ function AveragesTable({
 }) {
   return (
     <div className="overflow-x-auto p-3">
-      <table className="w-full min-w-[900px] overflow-hidden rounded-lg border border-[var(--border)] text-sm">
+      <table className="w-full min-w-[900px] overflow-hidden rounded-lg border border-(--border) text-sm">
         <thead className="bg-gray-50 text-left text-xs text-slate-600">
           <tr>
             <th className="px-4 py-3 font-medium">Period</th>
@@ -243,7 +243,7 @@ function AveragesTable({
         </thead>
         <tbody>
           {rows.map((r) => (
-            <tr key={r.label} className="border-t border-[var(--border)]">
+            <tr key={r.label} className="border-t border-(--border)">
               <td className="px-4 py-4">
                 <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-xs font-bold text-brand-700">
                   {r.badge}
@@ -275,7 +275,7 @@ function AveragesTable({
 function GainCell({ value }: { value: number }) {
   return (
     <td className="px-4 py-4 text-emerald-600">
-      <span className="mr-2 inline-flex h-5 w-5 items-center justify-center rounded bg-emerald-50">
+      <span className="mr-2 inline-flex h-5 w-5 items-center justify-center rounded-sm bg-emerald-50">
         <TrendingUp size={12} />
       </span>
       +{formatCompact(value)}
@@ -301,7 +301,7 @@ function DayTable({ daily }: { daily: DailyPoint[] }) {
         </thead>
         <tbody>
           {daily.map((d) => (
-            <tr key={d.date} className="border-b border-[var(--border)]">
+            <tr key={d.date} className="border-b border-(--border)">
               <td className="px-3 py-2">{formatDay(d.date)}</td>
               <td className="px-3 py-2 text-right">{formatCompact(d.views)}</td>
               <td className="px-3 py-2 text-right">{formatCompact(d.engagement)}</td>
@@ -342,7 +342,7 @@ function UploadTable({ weekly }: { weekly: WeeklyPoint[] }) {
           {activeWeeks.map((d) => (
             <div
               key={d.weekStart}
-              className="rounded-lg border border-[var(--border)] px-3 py-2"
+              className="rounded-lg border border-(--border) px-3 py-2"
             >
               <div className="text-xs text-gray-400">{d.label}</div>
               <div className="mt-1 text-lg font-semibold">

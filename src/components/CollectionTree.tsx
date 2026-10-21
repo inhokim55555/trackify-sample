@@ -88,7 +88,7 @@ export function CollectionTree() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search Collection"
-          className="w-full rounded-md border border-[var(--border)] bg-white px-2 py-1 text-xs outline-none focus:border-brand-400"
+          className="w-full rounded-md border border-(--border) bg-white px-2 py-1 text-xs outline-hidden focus:border-brand-400"
         />
         <button
           onClick={() => setFormMode({ type: "create-root" })}

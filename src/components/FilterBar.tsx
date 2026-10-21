@@ -47,13 +47,13 @@ export function FilterBar() {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-2 border-b border-[var(--border)] bg-white px-5 py-2.5">
+    <div className="flex flex-wrap items-center gap-2 border-b border-(--border) bg-white px-5 py-2.5">
       {/* Collection chip */}
       <div
         className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm ${
           f.collectionName
             ? "border-brand-200 bg-brand-50 text-brand-800"
-            : "border-[var(--border)] bg-white text-gray-500"
+            : "border-(--border) bg-white text-gray-500"
         }`}
       >
         {f.collectionName ? (
@@ -76,7 +76,7 @@ export function FilterBar() {
       </div>
 
       {/* Platform selector */}
-      <div className="flex items-center gap-1 rounded-lg border border-[var(--border)] px-1.5 py-1">
+      <div className="flex items-center gap-1 rounded-lg border border-(--border) px-1.5 py-1">
         <button
           onClick={() => f.setPlatform("all")}
           className={`rounded-md px-2 py-1 text-xs ${
@@ -113,7 +113,7 @@ export function FilterBar() {
           onClick={() => setRangeOpen((v) => !v)}
           aria-expanded={rangeOpen}
           aria-label="Choose date range"
-          className="flex max-w-[260px] items-center gap-1.5 rounded-lg border border-[var(--border)] px-2.5 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
+          className="flex max-w-[260px] items-center gap-1.5 rounded-lg border border-(--border) px-2.5 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
         >
           <Calendar size={14} className="text-gray-400" />
           <span className="min-w-0 truncate">{f.rangeLabel}</span>
@@ -126,7 +126,7 @@ export function FilterBar() {
               onClick={() => setRangeOpen(false)}
               aria-hidden="true"
             />
-            <div className="absolute right-0 top-10 z-30 w-72 max-w-[calc(100vw-2rem)] rounded-xl border border-[var(--border)] bg-white p-2 shadow-xl">
+            <div className="absolute right-0 top-10 z-30 w-72 max-w-[calc(100vw-2rem)] rounded-xl border border-(--border) bg-white p-2 shadow-xl">
               <div className="space-y-0.5">
                 {RANGE_PRESETS.map((r) => {
                   const active = !f.from && !f.to && f.range === r.id;
@@ -148,7 +148,7 @@ export function FilterBar() {
                   );
                 })}
               </div>
-              <div className="mt-2 border-t border-[var(--border)] pt-2">
+              <div className="mt-2 border-t border-(--border) pt-2">
                 <div className="mb-1.5 px-1 text-xs font-medium text-gray-600">
                   Custom range
                 </div>
@@ -160,7 +160,7 @@ export function FilterBar() {
                       value={f.from ?? ""}
                       aria-label="From date"
                       onChange={(e) => f.setDateRange(e.target.value || null, f.to)}
-                      className="min-w-0 rounded-md border border-[var(--border)] px-2 py-1.5 text-sm font-normal text-gray-700 outline-none focus:border-brand-400"
+                      className="min-w-0 rounded-md border border-(--border) px-2 py-1.5 text-sm font-normal text-gray-700 outline-hidden focus:border-brand-400"
                     />
                   </label>
                   <label className="grid gap-1 text-xs font-medium text-gray-500">
@@ -170,7 +170,7 @@ export function FilterBar() {
                       value={f.to ?? ""}
                       aria-label="To date"
                       onChange={(e) => f.setDateRange(f.from, e.target.value || null)}
-                      className="min-w-0 rounded-md border border-[var(--border)] px-2 py-1.5 text-sm font-normal text-gray-700 outline-none focus:border-brand-400"
+                      className="min-w-0 rounded-md border border-(--border) px-2 py-1.5 text-sm font-normal text-gray-700 outline-hidden focus:border-brand-400"
                     />
                   </label>
                 </div>
@@ -195,7 +195,7 @@ export function FilterBar() {
       <button
         onClick={handleExport}
         disabled={exporting}
-        className="flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+        className="flex items-center gap-1.5 rounded-lg border border-(--border) px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
       >
         <Download size={14} />
         {exporting ? "Exporting..." : "Export"}

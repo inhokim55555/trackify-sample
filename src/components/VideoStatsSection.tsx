@@ -17,13 +17,13 @@ export function VideoStatsSection({
   const displayRows = rows.slice(0, 8);
 
   return (
-    <section className="overflow-hidden rounded-xl border border-[var(--border)] bg-white">
-      <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3">
+    <section className="overflow-hidden rounded-xl border border-(--border) bg-white">
+      <div className="flex items-center justify-between border-b border-(--border) px-4 py-3">
         <div className="w-32" />
         <h2 className="text-sm font-semibold">Video Stats</h2>
         <Link
           href="/videos"
-          className="rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+          className="rounded-lg border border-(--border) px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
         >
           See All Videos
         </Link>
@@ -31,7 +31,7 @@ export function VideoStatsSection({
       <div className="overflow-x-auto scroll-thin">
         <table className="w-full min-w-[1180px] text-sm">
           <thead>
-            <tr className="border-b border-[var(--border)] bg-gray-50 text-left text-xs text-slate-600">
+            <tr className="border-b border-(--border) bg-gray-50 text-left text-xs text-slate-600">
               <th className="w-[360px] px-4 py-3 font-medium">Video</th>
               <th className="bg-slate-100 px-4 py-3 font-medium">
                 <span className="inline-flex items-center gap-2">
@@ -60,7 +60,7 @@ export function VideoStatsSection({
           <tbody>
             {loading ? (
               Array.from({ length: 6 }).map((_, i) => (
-                <tr key={i} className="border-b border-[var(--border)]">
+                <tr key={i} className="border-b border-(--border)">
                   <td colSpan={9} className="px-4 py-4">
                     <div className="skeleton h-12 w-full" />
                   </td>
@@ -76,7 +76,7 @@ export function VideoStatsSection({
               displayRows.map((v) => (
                 <tr
                   key={v.id}
-                  className="border-b border-[var(--border)] last:border-0 hover:bg-gray-50"
+                  className="border-b border-(--border) last:border-0 hover:bg-gray-50"
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-start gap-3">

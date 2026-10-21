@@ -21,6 +21,8 @@ Local database state lives in ignored `sample-state/`; TaskTrack browser edits r
 
 ## Security review
 
-See [SECURITY-REVIEW.md](SECURITY-REVIEW.md) for review scope, fixes, tests and limitations. A review does not guarantee absence of vulnerabilities.
+See [SECURITY-UPDATE.md](SECURITY-UPDATE.md) for the dependency remediation and verification. The full dependency audit now reports zero known vulnerabilities, including development dependencies. Run `npm run audit:security` to check current advisories.
 
-The release check found zero production dependency advisories. The full audit still lists nine development-tool entries (seven high, two moderate) in Tailwind/ESLint dependencies. These affect build-time pattern/selector processing; do not build untrusted source or configuration. Upgrading that toolchain is deferred.
+[SECURITY-REVIEW.md](SECURITY-REVIEW.md) preserves the original review and its scope limitations; its nine deferred dependency entries were subsequently resolved by this update. An audit does not guarantee absence of vulnerabilities.
+
+The styling engine requires a modern browser: Chrome 111+, Safari 16.4+, or Firefox 128+.

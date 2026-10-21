@@ -75,7 +75,7 @@ function ConfirmDialogForm({
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/30 p-4"
+      className="fixed inset-0 z-60 flex items-center justify-center bg-black/30 p-4"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget && !working) onClose();
       }}
@@ -111,7 +111,7 @@ function ConfirmDialogForm({
           <button
             onClick={onClose}
             disabled={working}
-            className="rounded-full border border-[var(--border)] px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+            className="rounded-full border border-(--border) px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
           >
             {cancelLabel}
           </button>
@@ -198,7 +198,7 @@ function NameDialogForm({
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/30 p-4"
+      className="fixed inset-0 z-60 flex items-center justify-center bg-black/30 p-4"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget && !submitting) onClose();
       }}
@@ -230,14 +230,14 @@ function NameDialogForm({
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && submit()}
           placeholder={placeholder}
-          className="w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+          className="w-full rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
         />
         {error ? <p role="alert" className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-700">{error}</p> : null}
         <div className="mt-4 flex justify-end gap-2">
           <button
             onClick={onClose}
             disabled={submitting}
-            className="rounded-full border border-[var(--border)] px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+            className="rounded-full border border-(--border) px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
           >
             Cancel
           </button>

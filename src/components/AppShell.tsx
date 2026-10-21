@@ -92,7 +92,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <button
             onClick={() => setMobileNavOpen(false)}
             aria-label="Close navigation"
-            className="absolute left-[248px] top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 shadow"
+            className="absolute left-[248px] top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-600 shadow-sm"
           >
             <X size={16} />
           </button>
@@ -100,7 +100,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       ) : null}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="flex items-center gap-3 border-b border-[var(--border)] bg-white px-4 py-2.5 lg:hidden">
+        <div className="flex items-center gap-3 border-b border-(--border) bg-white px-4 py-2.5 lg:hidden">
           <button
             onClick={() => setMobileNavOpen(true)}
             aria-label="Open navigation"

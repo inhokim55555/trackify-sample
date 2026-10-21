@@ -28,7 +28,7 @@ const ToastCtx = createContext<ToastContextValue | null>(null);
 const TONE_STYLES: Record<ToastTone, string> = {
   success: "border-emerald-200 bg-emerald-50 text-emerald-800",
   error: "border-rose-200 bg-rose-50 text-rose-800",
-  info: "border-[var(--border)] bg-white text-gray-700",
+  info: "border-(--border) bg-white text-gray-700",
 };
 
 function ToneIcon({ tone }: { tone: ToastTone }) {
@@ -64,7 +64,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       {toasts.length > 0 && (
         <div
           aria-live="polite"
-          className="pointer-events-none fixed bottom-4 right-4 z-[70] flex w-full max-w-sm flex-col gap-2"
+          className="pointer-events-none fixed bottom-4 right-4 z-70 flex w-full max-w-sm flex-col gap-2"
         >
           {toasts.map((toast) => (
             <div

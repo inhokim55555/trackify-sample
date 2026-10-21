@@ -73,17 +73,17 @@ export function LoginForm({ passwordUpdated = false }: { passwordUpdated?: boole
   const needsPassword = mode === "signin" || mode === "signup";
   const visibleMessage = message || (passwordUpdated && mode === "signin" ? "Your password was saved. Sign in with your new password." : "");
   return (
-    <form onSubmit={submit} className="w-full max-w-sm rounded-xl border border-[var(--border)] bg-white p-5 shadow-sm">
+    <form onSubmit={submit} className="w-full max-w-sm rounded-xl border border-(--border) bg-white p-5 shadow-xs">
       <h1 className="text-lg font-semibold text-gray-900">{titles[mode]}</h1>
       <p className="mt-1 text-sm text-gray-500">{mode === "signup" ? "Use your company email or the email invited by a Trackify admin." : "Access your Trackify workspace."}</p>
       <label className="mt-4 block text-xs font-medium text-gray-500">Email
-        <input required type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm" />
+        <input required type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm" />
       </label>
       {needsPassword ? <label className="mt-3 block text-xs font-medium text-gray-500">Password
-        <input required minLength={mode === "signup" ? 8 : undefined} type="password" autoComplete={mode === "signin" ? "current-password" : "new-password"} value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm" />
+        <input required minLength={mode === "signup" ? 8 : undefined} type="password" autoComplete={mode === "signin" ? "current-password" : "new-password"} value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm" />
       </label> : null}
       {mode === "signup" ? <label className="mt-3 block text-xs font-medium text-gray-500">Confirm password
-        <input required minLength={8} type="password" autoComplete="new-password" value={confirmation} onChange={(e) => setConfirmation(e.target.value)} disabled={loading} className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm" />
+        <input required minLength={8} type="password" autoComplete="new-password" value={confirmation} onChange={(e) => setConfirmation(e.target.value)} disabled={loading} className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm" />
         <span className="mt-2 block">Use at least 8 characters.</span>
       </label> : null}
       {visibleMessage ? <div role="status" aria-live="polite" className="mt-3 rounded-lg bg-gray-50 px-3 py-2 text-sm text-gray-600">{visibleMessage}</div> : null}

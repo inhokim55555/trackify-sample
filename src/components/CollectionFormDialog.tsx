@@ -98,7 +98,7 @@ function CollectionForm({ mode, onClose, onDone }: Omit<CollectionFormDialogProp
           onChange={(e) => setName(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && submit()}
           placeholder="e.g. Lumen Grove"
-          className="mb-3 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+          className="mb-3 w-full rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
         />
 
         {mode.type !== "rename" && (
@@ -109,7 +109,7 @@ function CollectionForm({ mode, onClose, onDone }: Omit<CollectionFormDialogProp
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="mb-3 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm capitalize outline-none focus:border-brand-400"
+              className="mb-3 w-full rounded-lg border border-(--border) px-3 py-2 text-sm capitalize outline-hidden focus:border-brand-400"
             >
               {COLLECTION_TYPES.map((t) => (
                 <option key={t} value={t}>
@@ -129,7 +129,7 @@ function CollectionForm({ mode, onClose, onDone }: Omit<CollectionFormDialogProp
         <div className="mt-2 flex justify-end gap-2">
           <button
             onClick={onClose}
-            className="rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
+            className="rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
           >
             Cancel
           </button>

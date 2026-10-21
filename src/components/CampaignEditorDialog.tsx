@@ -119,9 +119,9 @@ function CampaignEditorForm({
       <form
         onSubmit={submit}
         aria-busy={saving || deleting}
-        className="w-full max-w-xl rounded-xl border border-[var(--border)] bg-white shadow-2xl"
+        className="w-full max-w-xl rounded-xl border border-(--border) bg-white shadow-2xl"
       >
-        <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3">
+        <div className="flex items-center justify-between border-b border-(--border) px-4 py-3">
           <div>
             <h2 className="text-sm font-semibold text-gray-900">Edit campaign</h2>
             <p className="text-xs text-gray-400">{campaign.name}</p>
@@ -146,7 +146,7 @@ function CampaignEditorForm({
               onChange={(e) =>
                 setDraft((current) => ({ ...current, name: e.target.value }))
               }
-              className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm font-medium text-gray-900 outline-none focus:border-brand-400"
+              className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm font-medium text-gray-900 outline-hidden focus:border-brand-400"
             />
           </label>
           <label className="block text-xs font-medium text-gray-500">
@@ -156,7 +156,7 @@ function CampaignEditorForm({
               onChange={(e) =>
                 setDraft((current) => ({ ...current, brand: e.target.value }))
               }
-              className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm font-medium text-gray-900 outline-none focus:border-brand-400"
+              className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm font-medium text-gray-900 outline-hidden focus:border-brand-400"
             />
           </label>
           <label className="block text-xs font-medium text-gray-500">
@@ -169,7 +169,7 @@ function CampaignEditorForm({
                   stage: e.target.value as CampaignStage,
                 }))
               }
-              className="mt-1 w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm font-medium text-gray-900 outline-none focus:border-brand-400"
+              className="mt-1 w-full rounded-lg border border-(--border) bg-white px-3 py-2 text-sm font-medium text-gray-900 outline-hidden focus:border-brand-400"
             >
               {CAMPAIGN_STAGES.map((stage) => (
                 <option key={stage} value={stage}>
@@ -195,7 +195,7 @@ function CampaignEditorForm({
                     budget: e.target.value,
                   }))
                 }
-                className="w-full rounded-lg border border-[var(--border)] py-2 pl-8 pr-3 text-sm font-medium text-gray-900 outline-none focus:border-brand-400"
+                className="w-full rounded-lg border border-(--border) py-2 pl-8 pr-3 text-sm font-medium text-gray-900 outline-hidden focus:border-brand-400"
               />
             </div>
           </label>
@@ -215,7 +215,7 @@ function CampaignEditorForm({
                     startsAt: e.target.value,
                   }))
                 }
-                className="w-full rounded-lg border border-[var(--border)] py-2 pl-8 pr-3 text-sm font-medium text-gray-900 outline-none focus:border-brand-400"
+                className="w-full rounded-lg border border-(--border) py-2 pl-8 pr-3 text-sm font-medium text-gray-900 outline-hidden focus:border-brand-400"
               />
             </div>
           </label>
@@ -232,7 +232,7 @@ function CampaignEditorForm({
                 onChange={(e) =>
                   setDraft((current) => ({ ...current, endsAt: e.target.value }))
                 }
-                className="w-full rounded-lg border border-[var(--border)] py-2 pl-8 pr-3 text-sm font-medium text-gray-900 outline-none focus:border-brand-400"
+                className="w-full rounded-lg border border-(--border) py-2 pl-8 pr-3 text-sm font-medium text-gray-900 outline-hidden focus:border-brand-400"
               />
             </div>
           </label>
@@ -244,7 +244,7 @@ function CampaignEditorForm({
                 setDraft((current) => ({ ...current, notes: e.target.value }))
               }
               rows={4}
-              className="mt-1 w-full resize-none rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-900 outline-none focus:border-brand-400"
+              className="mt-1 w-full resize-none rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-900 outline-hidden focus:border-brand-400"
             />
           </label>
         </fieldset>
@@ -255,7 +255,7 @@ function CampaignEditorForm({
           </div>
         ) : null}
 
-        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[var(--border)] px-4 py-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-(--border) px-4 py-3">
           {onDelete ? (
             <button
               type="button"
@@ -274,7 +274,7 @@ function CampaignEditorForm({
               type="button"
               onClick={onClose}
               disabled={saving || deleting}
-              className="rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+              className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
             >
               Cancel
             </button>

@@ -41,14 +41,14 @@ export function UpdatePasswordForm() {
     finally { setLoading(false); }
   }
   return (
-    <form onSubmit={submit} className="w-full max-w-sm rounded-xl border border-[var(--border)] bg-white p-5 shadow-sm">
+    <form onSubmit={submit} className="w-full max-w-sm rounded-xl border border-(--border) bg-white p-5 shadow-xs">
       <h1 className="text-lg font-semibold text-gray-900">Set new password</h1>
       <p className="mt-2 text-sm text-gray-600">{email ? `Set a password for ${email}.` : message ? "Request a fresh email link to continue." : "Checking your email link…"}</p>
       <label className="mt-4 block text-xs font-medium text-gray-500">New password
-        <input required minLength={8} type="password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={!ready || loading} className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm" />
+        <input required minLength={8} type="password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={!ready || loading} className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm" />
       </label>
       <label className="mt-3 block text-xs font-medium text-gray-500">Confirm new password
-        <input required minLength={8} type="password" autoComplete="new-password" value={confirmation} onChange={(e) => setConfirmation(e.target.value)} disabled={!ready || loading} className="mt-1 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm" />
+        <input required minLength={8} type="password" autoComplete="new-password" value={confirmation} onChange={(e) => setConfirmation(e.target.value)} disabled={!ready || loading} className="mt-1 w-full rounded-lg border border-(--border) px-3 py-2 text-sm" />
       </label>
       <p className="mt-2 text-xs text-gray-500">Use at least 8 characters.</p>
       {message ? <p role="alert" className="mt-3 text-sm text-gray-600">{message}</p> : null}

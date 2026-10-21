@@ -71,7 +71,7 @@ export default function VideoDetailPage() {
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <Link
           href="/videos"
-          className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
         >
           <ArrowLeft size={15} /> All Videos
         </Link>
@@ -80,7 +80,7 @@ export default function VideoDetailPage() {
             href={video.url}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
           >
             <ExternalLink size={15} /> Open source video
           </a>
@@ -93,12 +93,12 @@ export default function VideoDetailPage() {
           <div className="skeleton h-64 w-full rounded-xl" />
         </div>
       ) : error || !video ? (
-        <div className="rounded-xl border border-[var(--border)] bg-white p-6 text-sm text-gray-500">
+        <div className="rounded-xl border border-(--border) bg-white p-6 text-sm text-gray-500">
           {error || "Video not found."}
         </div>
       ) : (
         <>
-          <section className="mb-4 rounded-xl border border-[var(--border)] bg-white p-4">
+          <section className="mb-4 rounded-xl border border-(--border) bg-white p-4">
             <div className="flex flex-wrap items-start gap-4">
               <VideoCreatorBadge handle={video.account.handle} size="lg" />
               <div className="min-w-0 flex-1">
@@ -136,7 +136,7 @@ export default function VideoDetailPage() {
             />
           </section>
 
-          <section className="mb-4 rounded-xl border border-[var(--border)] bg-white p-4">
+          <section className="mb-4 rounded-xl border border-(--border) bg-white p-4">
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
               <div>
                 <h2 className="text-sm font-semibold">Saved Snapshot History</h2>
@@ -153,14 +153,14 @@ export default function VideoDetailPage() {
             <HistoryBars rows={video.snapshots} />
           </section>
 
-          <section className="overflow-hidden rounded-xl border border-[var(--border)] bg-white">
-            <div className="border-b border-[var(--border)] px-4 py-3">
+          <section className="overflow-hidden rounded-xl border border-(--border) bg-white">
+            <div className="border-b border-(--border) px-4 py-3">
               <h2 className="text-sm font-semibold">Snapshot Rows</h2>
             </div>
             <div className="overflow-x-auto scroll-thin">
               <table className="w-full min-w-[920px] text-sm">
                 <thead>
-                  <tr className="border-b border-[var(--border)] bg-gray-50 text-xs text-gray-500">
+                  <tr className="border-b border-(--border) bg-gray-50 text-xs text-gray-500">
                     <th className="px-4 py-3 text-left font-medium">Date</th>
                     <th className="px-4 py-3 text-right font-medium">Views</th>
                     <th className="px-4 py-3 text-right font-medium">View Delta</th>
@@ -177,7 +177,7 @@ export default function VideoDetailPage() {
                   {video.snapshots.map((row) => (
                     <tr
                       key={row.id}
-                      className="border-b border-[var(--border)] last:border-0"
+                      className="border-b border-(--border) last:border-0"
                     >
                       <td className="whitespace-nowrap px-4 py-3 text-gray-600">
                         {formatDate(row.date)}
@@ -237,7 +237,7 @@ function MetricCard({
         ? String(value)
         : formatCompact(Number(value));
   return (
-    <div className="rounded-xl border border-[var(--border)] bg-white p-3">
+    <div className="rounded-xl border border-(--border) bg-white p-3">
       <div className="text-xs font-medium text-gray-500">{label}</div>
       <div className="mt-1 truncate text-xl font-semibold text-gray-900">
         {display}
@@ -251,7 +251,7 @@ function HistoryBars({ rows }: { rows: SnapshotRow[] }) {
   const maxViews = Math.max(...chartRows.map((row) => row.views), 1);
   if (chartRows.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed border-[var(--border)] px-4 py-8 text-center text-sm text-gray-400">
+      <div className="rounded-lg border border-dashed border-(--border) px-4 py-8 text-center text-sm text-gray-400">
         No saved snapshots available.
       </div>
     );

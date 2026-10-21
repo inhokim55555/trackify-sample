@@ -36,7 +36,7 @@ export function Sidebar({
 
   return (
     <aside
-      className={`flex h-screen shrink-0 flex-col border-r border-[var(--border)] bg-white transition-[width] duration-200 ${
+      className={`flex h-screen shrink-0 flex-col border-r border-(--border) bg-white transition-[width] duration-200 ${
         collapsed ? "w-[68px]" : "w-[240px]"
       }`}
     >
@@ -48,7 +48,7 @@ export function Sidebar({
       >
         {!collapsed ? (
           <div className="flex min-w-0 items-center gap-2">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-sm font-bold text-white">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-brand-500 to-brand-700 text-sm font-bold text-white">
               I
             </div>
             <div className="min-w-0 leading-tight">
@@ -121,7 +121,7 @@ export function Sidebar({
       </div>
 
       {/* Usage + footer */}
-      <div className="border-t border-[var(--border)] p-3">
+      <div className="border-t border-(--border) p-3">
         {!collapsed ? (
           <>
             <div className="mb-3">

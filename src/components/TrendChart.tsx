@@ -34,7 +34,7 @@ export function TrendChart({
   const data = buildChartData(daily, metric, mode);
 
   return (
-    <div className="rounded-xl border border-[var(--border)] bg-white p-4">
+    <div className="rounded-xl border border-(--border) bg-white p-4">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div>
           <div className="text-xs font-medium uppercase tracking-wide text-gray-400">
@@ -48,7 +48,7 @@ export function TrendChart({
               key={m}
               onClick={() => setMode(m)}
               className={`rounded-md px-3 py-1 ${
-                mode === m ? "bg-white font-medium shadow-sm" : "text-gray-500"
+                mode === m ? "bg-white font-medium shadow-xs" : "text-gray-500"
               }`}
             >
               {m === "cumulative" ? "Cumulative" : "Daily"}
@@ -245,7 +245,7 @@ function AreaChart({
 
       {hv && hover != null && (
         <div
-          className="pointer-events-none absolute -translate-x-1/2 rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-xs shadow-md"
+          className="pointer-events-none absolute -translate-x-1/2 rounded-lg border border-(--border) bg-white px-3 py-2 text-xs shadow-md"
           style={{
             left: `${(x(hover) / W) * 100}%`,
             top: 4,

@@ -70,7 +70,7 @@ export function CollectionManager({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4">
       <div className="flex max-h-[80vh] w-full max-w-lg flex-col rounded-xl bg-white shadow-xl">
-        <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-3">
+        <div className="flex items-center justify-between border-b border-(--border) px-5 py-3">
           <h3 className="text-base font-semibold">
             Manage creators -{" "}
             <span className="text-brand-700">{collectionName}</span>
@@ -95,7 +95,7 @@ export function CollectionManager({
               {memberAccounts.map((a) => (
                 <div
                   key={a.id}
-                  className="flex items-center gap-2 rounded-lg border border-[var(--border)] px-3 py-2"
+                  className="flex items-center gap-2 rounded-lg border border-(--border) px-3 py-2"
                 >
                   <PlatformIcon platform={a.platform} size={18} />
                   <span className="text-sm font-medium">@{a.handle}</span>
@@ -118,7 +118,7 @@ export function CollectionManager({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search creators..."
-            className="mb-2 w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+            className="mb-2 w-full rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
           />
           {all.loading ? (
             <div className="skeleton h-24 w-full" />
@@ -147,7 +147,7 @@ export function CollectionManager({
           )}
         </div>
 
-        <div className="border-t border-[var(--border)] px-5 py-3 text-right">
+        <div className="border-t border-(--border) px-5 py-3 text-right">
           <button
             onClick={onClose}
             className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700"

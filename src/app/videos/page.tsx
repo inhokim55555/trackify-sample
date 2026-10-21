@@ -362,7 +362,7 @@ export default function VideosPage() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setMetricsOpen(true)}
-            className="flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-white px-4 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
+            className="flex items-center gap-1.5 rounded-full border border-(--border) bg-white px-4 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
           >
             <Upload size={15} /> Enter Metrics
           </button>
@@ -383,7 +383,7 @@ export default function VideosPage() {
       {refreshRuns.error ? <ReadError message={`Refresh history could not be loaded. ${refreshRuns.error}`} onRetry={refreshRuns.reload} /> : null}
       {collections.error ? <ReadError message={`Collections could not be loaded. ${collections.error}`} onRetry={collections.reload} /> : null}
       {/* Collapsible insights: summary line when closed, full detail when open */}
-      <div className="mb-3 rounded-xl border border-[var(--border)] bg-white">
+      <div className="mb-3 rounded-xl border border-(--border) bg-white">
         <button
           onClick={toggleInsights}
           aria-expanded={insightsOpen}
@@ -419,7 +419,7 @@ export default function VideosPage() {
         </button>
 
         {insightsOpen ? (
-          <div className="border-t border-[var(--border)] p-3">
+          <div className="border-t border-(--border) p-3">
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
               <InsightCard
                 label="Refresh health"
@@ -467,7 +467,7 @@ export default function VideosPage() {
                   {refreshRuns.data.data.map((run) => (
                     <div
                       key={run.id}
-                      className="rounded-lg border border-[var(--border)] px-3 py-2"
+                      className="rounded-lg border border-(--border) px-3 py-2"
                     >
                       <div className="flex items-center justify-between gap-2">
                         <span className="text-xs font-semibold uppercase text-gray-500">
@@ -506,12 +506,12 @@ export default function VideosPage() {
       </div>
 
       {/* Table toolbar: column views */}
-      <div className="mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-[var(--border)] bg-white px-3 py-2">
+      <div className="mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-(--border) bg-white px-3 py-2">
         <select
           value={activeColumnViewId}
           onChange={(e) => applyColumnView(e.target.value)}
           aria-label="Column view"
-          className="rounded-lg border border-[var(--border)] bg-white px-3 py-1.5 text-sm outline-none focus:border-brand-400"
+          className="rounded-lg border border-(--border) bg-white px-3 py-1.5 text-sm outline-hidden focus:border-brand-400"
         >
           {allColumnViews.map((view) => (
             <option key={view.id} value={view.id}>
@@ -525,12 +525,12 @@ export default function VideosPage() {
         <div className="relative">
           <button
             onClick={() => setColumnMenuOpen((open) => !open)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-(--border) px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
           >
             <SlidersHorizontal size={15} /> Columns
           </button>
           {columnMenuOpen ? (
-            <div className="absolute left-0 top-10 z-20 w-64 rounded-xl border border-[var(--border)] bg-white p-3 shadow-xl">
+            <div className="absolute left-0 top-10 z-20 w-64 rounded-xl border border-(--border) bg-white p-3 shadow-xl">
               <div className="space-y-2">
                 {VIDEO_TABLE_COLUMNS.map((column) => (
                   <label
@@ -542,7 +542,7 @@ export default function VideosPage() {
                       checked={visibleColumnKeys.includes(column.key)}
                       disabled={column.key === "video"}
                       onChange={() => toggleColumn(column.key)}
-                      className="h-4 w-4 rounded border-gray-300 text-brand-600"
+                      className="h-4 w-4 rounded-sm border-gray-300 text-brand-600"
                     />
                     <span>{column.label || "Platform"}</span>
                   </label>
@@ -567,7 +567,7 @@ export default function VideosPage() {
 
       {/* Sticky bulk-action bar (appears without reflowing the toolbar) */}
       {selectedIds.length > 0 ? (
-        <div className="sticky top-2 z-30 mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-brand-200 bg-brand-50 px-3 py-2 shadow-sm">
+        <div className="sticky top-2 z-30 mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-brand-200 bg-brand-50 px-3 py-2 shadow-xs">
           <span className="text-sm font-medium text-brand-800">
             {formatCountLabel(selectedIds.length, "video")} selected
           </span>
@@ -575,7 +575,7 @@ export default function VideosPage() {
             value={targetCollectionId}
             onChange={(e) => setTargetCollectionId(e.target.value)}
             aria-label="Target collection"
-            className="max-w-[220px] rounded-lg border border-[var(--border)] bg-white px-3 py-1.5 text-sm outline-none focus:border-brand-400"
+            className="max-w-[220px] rounded-lg border border-(--border) bg-white px-3 py-1.5 text-sm outline-hidden focus:border-brand-400"
           >
             <option value="">Choose collection</option>
             {flatCollections.map((collection) => (
@@ -587,7 +587,7 @@ export default function VideosPage() {
           <button
             onClick={addSelectedToCollection}
             disabled={!targetCollectionId || !!bulkBusy}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-white px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-(--border) bg-white px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
           >
             <FolderPlus size={15} />
             {bulkBusy === "add" ? "Adding..." : "Add"}
@@ -600,7 +600,7 @@ export default function VideosPage() {
                 ? "Remove from the current collection"
                 : "Select a collection filter first"
             }
-            className="rounded-lg border border-[var(--border)] bg-white px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            className="rounded-lg border border-(--border) bg-white px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
           >
             {bulkBusy === "remove" ? "Removing..." : "Remove"}
           </button>
@@ -609,7 +609,7 @@ export default function VideosPage() {
               void runBulkAction("export", exportSelectedCsv);
             }}
             disabled={!!bulkBusy}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-white px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-(--border) bg-white px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
           >
             <Download size={15} /> {bulkBusy === "export" ? "Exporting..." : "Export"}
           </button>
@@ -654,7 +654,7 @@ export default function VideosPage() {
 
       {/* Pager */}
       {total > PAGE_SIZE ? (
-        <div className="mt-3 flex items-center justify-between rounded-xl border border-[var(--border)] bg-white px-3 py-2">
+        <div className="mt-3 flex items-center justify-between rounded-xl border border-(--border) bg-white px-3 py-2">
           <span className="text-xs text-gray-600">
             Showing {pageStart}–{pageEnd} of {total}
           </span>
@@ -662,7 +662,7 @@ export default function VideosPage() {
             <button
               onClick={() => setPage((p) => Math.max(0, p - 1))}
               disabled={!hasPrev || loading}
-              className="inline-flex items-center gap-1 rounded-lg border border-[var(--border)] px-2.5 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-40"
+              className="inline-flex items-center gap-1 rounded-lg border border-(--border) px-2.5 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-40"
             >
               <ChevronLeft size={14} /> Prev
             </button>
@@ -672,7 +672,7 @@ export default function VideosPage() {
             <button
               onClick={() => setPage((p) => p + 1)}
               disabled={!hasNext || loading}
-              className="inline-flex items-center gap-1 rounded-lg border border-[var(--border)] px-2.5 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-40"
+              className="inline-flex items-center gap-1 rounded-lg border border-(--border) px-2.5 py-1.5 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-40"
             >
               Next <ChevronRight size={14} />
             </button>

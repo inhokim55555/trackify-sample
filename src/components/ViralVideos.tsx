@@ -50,7 +50,7 @@ export function ViralVideos({
   });
 
   return (
-    <div className="rounded-xl border border-[var(--border)] bg-white p-4">
+    <div className="rounded-xl border border-(--border) bg-white p-4">
       <div className="mb-4 flex items-center justify-between">
         <div className="w-24" />
         <h2 className="text-sm font-semibold">Most Viral Videos</h2>
@@ -61,7 +61,7 @@ export function ViralVideos({
                 key={m}
                 onClick={() => setMode(m)}
                 className={`rounded-md px-2.5 py-1 capitalize ${
-                  mode === m ? "bg-white font-medium shadow-sm" : "text-gray-500"
+                  mode === m ? "bg-white font-medium shadow-xs" : "text-gray-500"
                 }`}
               >
                 {m === "score" ? "Viral" : m}
@@ -70,7 +70,7 @@ export function ViralVideos({
           </div>
           <Link
             href="/videos"
-            className="rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+            className="rounded-lg border border-(--border) px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
           >
             See All Videos
           </Link>
@@ -92,9 +92,9 @@ export function ViralVideos({
           {sorted.slice(0, 3).map((v, i) => (
             <div
               key={v.id}
-              className="relative grid grid-cols-[180px_1fr] overflow-hidden rounded-lg border border-[var(--border)] bg-white"
+              className="relative grid grid-cols-[180px_1fr] overflow-hidden rounded-lg border border-(--border) bg-white"
             >
-              <div className="absolute left-2 top-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white shadow">
+              <div className="absolute left-2 top-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white shadow-sm">
                 #{i + 1}
               </div>
               <div className="relative h-[260px] bg-slate-100 p-3">
@@ -137,7 +137,7 @@ export function ViralVideos({
                     {v.viralConfidence} confidence
                   </div>
                 </div>
-                <div className="my-3 border-t border-[var(--border)]" />
+                <div className="my-3 border-t border-(--border)" />
                 <div className="space-y-3 text-sm">
                   <Metric icon={<BarChart3 size={14} />} label="Views / Day" value={formatCompact(v.viralViewsPerDay)} />
                   <Metric icon={<Eye size={14} />} label="Total Views" value={formatCompact(v.totalViews)} />

@@ -376,7 +376,7 @@ function TrackDialogSession({ collectionId, onClose, onDone, input, setInput }: 
       aria-label="Import posts"
     >
       <div className="w-full max-w-2xl rounded-2xl bg-white shadow-xl">
-        <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-3">
+        <div className="flex items-center justify-between border-b border-(--border) px-5 py-3">
           <div>
             <h3 className="font-display text-base font-semibold">Import Posts</h3>
             <p className="text-xs text-gray-500">
@@ -396,7 +396,7 @@ function TrackDialogSession({ collectionId, onClose, onDone, input, setInput }: 
 
         <div className="p-5">
           <div className="mb-3 grid gap-3 sm:grid-cols-[1fr_auto]">
-            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-[var(--border)] px-4 py-3 text-sm text-gray-600 hover:bg-gray-50">
+            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-(--border) px-4 py-3 text-sm text-gray-600 hover:bg-gray-50">
               <FileUp size={16} />
               Upload CSV
               <input
@@ -425,7 +425,7 @@ function TrackDialogSession({ collectionId, onClose, onDone, input, setInput }: 
               value={destinationId}
               onChange={(e) => setDestinationId(e.target.value)}
               disabled={submitting}
-              className="w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-brand-400 disabled:opacity-60"
+              className="w-full rounded-lg border border-(--border) bg-white px-3 py-2 text-sm outline-hidden focus:border-brand-400 disabled:opacity-60"
             >
               <option value="">No collection (just track)</option>
               {flatCollections.map((collection) => (
@@ -455,7 +455,7 @@ function TrackDialogSession({ collectionId, onClose, onDone, input, setInput }: 
             placeholder={
               "https://www.tiktok.com/@creator/video/123...\nhttps://www.instagram.com/reel/abc..."
             }
-            className="h-36 w-full resize-none rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400 disabled:bg-gray-50"
+            className="h-36 w-full resize-none rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400 disabled:bg-gray-50"
           />
 
           {invalidLines.length > 0 && (
@@ -478,8 +478,8 @@ function TrackDialogSession({ collectionId, onClose, onDone, input, setInput }: 
           )}
 
           {progressRows.length > 0 && (
-            <div className="mt-3 overflow-hidden rounded-lg border border-[var(--border)]">
-              <div className="flex items-center justify-between border-b border-[var(--border)] bg-gray-50 px-3 py-2">
+            <div className="mt-3 overflow-hidden rounded-lg border border-(--border)">
+              <div className="flex items-center justify-between border-b border-(--border) bg-gray-50 px-3 py-2">
                 <div className="text-xs font-semibold text-gray-600">
                   Import progress
                 </div>
@@ -497,7 +497,7 @@ function TrackDialogSession({ collectionId, onClose, onDone, input, setInput }: 
                 {progressRows.map((row) => (
                   <div
                     key={row.url}
-                    className="flex items-start gap-2 border-b border-[var(--border)] px-3 py-2 last:border-0"
+                    className="flex items-start gap-2 border-b border-(--border) px-3 py-2 last:border-0"
                   >
                     <span className="mt-0.5 shrink-0">
                       {progressIcon(row.status)}
@@ -529,14 +529,14 @@ function TrackDialogSession({ collectionId, onClose, onDone, input, setInput }: 
           )}
         </div>
 
-        <div className="flex items-center justify-end gap-2 border-t border-[var(--border)] px-5 py-3">
+        <div className="flex items-center justify-end gap-2 border-t border-(--border) px-5 py-3">
           {submitting ? (
             <button
               onClick={() => {
                 cancelRequested.current = true;
                 setCancelPending(true);
               }}
-              className="rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
+              className="rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
             >
               {cancelPending
                 ? "Stopping after this batch..."
@@ -546,13 +546,13 @@ function TrackDialogSession({ collectionId, onClose, onDone, input, setInput }: 
             <>
               {progressRows.some((row) => row.status === "failed") && (
                 <button onClick={() => submit(progressRows.filter((row) => row.status === "failed").map((row) => row.url))}
-                  className="rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-600 hover:bg-gray-50">
+                  className="rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-600 hover:bg-gray-50">
                   Retry failed posts
                 </button>
               )}
               <button
                 onClick={startNewImport}
-                className="rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                className="rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
               >
                 Import more
               </button>
@@ -567,7 +567,7 @@ function TrackDialogSession({ collectionId, onClose, onDone, input, setInput }: 
             <>
               <button
                 onClick={onClose}
-                className="rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                className="rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
               >
                 Close
               </button>

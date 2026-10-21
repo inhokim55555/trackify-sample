@@ -28,7 +28,7 @@ export function AuthLinkComplete() {
     void finish();
   }, [router, supabase]);
   return (
-    <div className="w-full max-w-sm rounded-xl border border-[var(--border)] bg-white p-5 shadow-sm">
+    <div className="w-full max-w-sm rounded-xl border border-(--border) bg-white p-5 shadow-xs">
       <h1 className="text-lg font-semibold text-gray-900">{error ? "Unable to finish sign-in" : "Checking email link"}</h1>
       <p role={error ? "alert" : "status"} className="mt-3 text-sm text-gray-600">{error || "Finishing sign-in to Trackify…"}</p>
       {error ? <a href="/login" className="mt-4 block text-sm text-brand-700 underline">Back to sign in, reset password, or resend verification</a> : null}

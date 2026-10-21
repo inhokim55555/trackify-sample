@@ -73,10 +73,10 @@ export function AccountsTable({
   onSort: (key: string) => void;
 }) {
   return (
-    <div className="overflow-x-auto scroll-thin rounded-xl border border-[var(--border)] bg-white">
+    <div className="overflow-x-auto scroll-thin rounded-xl border border-(--border) bg-white">
       <table className="w-full min-w-[1100px] text-sm">
         <thead>
-          <tr className="border-b border-[var(--border)] text-left text-xs text-gray-500">
+          <tr className="border-b border-(--border) text-left text-xs text-gray-500">
             <th className="px-3 py-2.5 font-medium">Creator</th>
             {COLS.map((c) => (
               <th
@@ -99,14 +99,14 @@ export function AccountsTable({
         <tbody>
           {loading
             ? Array.from({ length: 8 }).map((_, i) => (
-                <tr key={i} className="border-b border-[var(--border)]">
+                <tr key={i} className="border-b border-(--border)">
                   <td className="px-3 py-3" colSpan={COLS.length + 1}>
                     <div className="skeleton h-4 w-full" />
                   </td>
                 </tr>
               ))
             : rows.map((a) => (
-                <tr key={a.id} className="border-b border-[var(--border)] last:border-0 hover:bg-gray-50">
+                <tr key={a.id} className="border-b border-(--border) last:border-0 hover:bg-gray-50">
                   <td className="whitespace-nowrap px-3 py-2.5 font-medium">@{a.handle}</td>
                   {COLS.map((c) => (
                     <td

@@ -21,7 +21,7 @@ export default function SettingsPage() {
           >
             Workspace
           </h2>
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--border)] bg-white px-4 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--border) bg-white px-4 py-3">
             <div className="flex min-w-0 items-center gap-2">
               <Database size={16} className="text-gray-400" />
               <div>

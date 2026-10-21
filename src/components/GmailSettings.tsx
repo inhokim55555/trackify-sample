@@ -45,7 +45,7 @@ export function GmailSettings() {
   }
 
   return (
-    <div className="rounded-xl border border-[var(--border)] bg-white p-4">
+    <div className="rounded-xl border border-(--border) bg-white p-4">
       <div className="mb-3 flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-2">
           <Mail size={16} className="text-sky-600" />
@@ -60,7 +60,7 @@ export function GmailSettings() {
           <button
             onClick={disconnect}
             disabled={busy}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
           >
             <Unplug size={15} /> Disconnect
           </button>

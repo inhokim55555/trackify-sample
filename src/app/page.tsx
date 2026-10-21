@@ -78,7 +78,7 @@ export default function OverviewPage() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setModulesOpen(true)}
-            className="flex items-center gap-1.5 rounded-full border border-[var(--border)] px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
+            className="flex items-center gap-1.5 rounded-full border border-(--border) px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
           >
             <SlidersHorizontal size={14} /> Edit Modules
           </button>

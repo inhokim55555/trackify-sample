@@ -96,7 +96,7 @@ export function TeamSettings() {
 
   if (team.error) {
     return (
-      <div className="rounded-xl border border-[var(--border)] bg-white p-5 text-sm text-gray-500">
+      <div className="rounded-xl border border-(--border) bg-white p-5 text-sm text-gray-500">
         Admin access is required.
       </div>
     );
@@ -104,7 +104,7 @@ export function TeamSettings() {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-[var(--border)] bg-white p-4">
+      <div className="rounded-xl border border-(--border) bg-white p-4">
         <div className="mb-3 flex items-center gap-2">
           <UserPlus size={16} className="text-brand-600" />
           <h2 className="text-sm font-semibold">Add teammate</h2>
@@ -121,7 +121,7 @@ export function TeamSettings() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="email@company.com"
-              className="w-full rounded-lg border border-[var(--border)] px-3 py-2 text-sm outline-none focus:border-brand-400"
+              className="w-full rounded-lg border border-(--border) px-3 py-2 text-sm outline-hidden focus:border-brand-400"
             />
           </label>
           <label className="block">
@@ -131,7 +131,7 @@ export function TeamSettings() {
             <select
               value={role}
               onChange={(e) => setRole(e.target.value as Role)}
-              className="w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-brand-400"
+              className="w-full rounded-lg border border-(--border) bg-white px-3 py-2 text-sm outline-hidden focus:border-brand-400"
             >
               <option value="Editor">Editor</option>
               <option value="Admin">Admin</option>
@@ -152,12 +152,12 @@ export function TeamSettings() {
         ) : null}
       </div>
 
-      <div className="rounded-xl border border-[var(--border)] bg-white">
-        <div className="flex items-center gap-2 border-b border-[var(--border)] px-4 py-3">
+      <div className="rounded-xl border border-(--border) bg-white">
+        <div className="flex items-center gap-2 border-b border-(--border) px-4 py-3">
           <Shield size={16} className="text-gray-500" />
           <h2 className="text-sm font-semibold">Team members</h2>
         </div>
-        <div className="divide-y divide-[var(--border)]">
+        <div className="divide-y divide-(--border)">
           {team.loading ? (
             <div className="p-4 text-sm text-gray-400">Loading...</div>
           ) : (
@@ -174,7 +174,7 @@ export function TeamSettings() {
                   onChange={(e) => updateUser(user.id, { role: e.target.value })}
                   disabled={busy === user.id}
                   title={ROLE_DESCRIPTIONS[user.role]}
-                  className="rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm outline-none focus:border-brand-400"
+                  className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm outline-hidden focus:border-brand-400"
                 >
                   <option value="Editor">Editor</option>
                   <option value="Admin">Admin</option>
@@ -182,7 +182,7 @@ export function TeamSettings() {
                 <button
                   onClick={() => updateUser(user.id, { disabled: !user.disabledAt })}
                   disabled={busy === user.id}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-(--border) px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
                 >
                   <UserMinus size={15} />
                   {user.disabledAt ? "Enable" : "Disable"}
@@ -193,11 +193,11 @@ export function TeamSettings() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-[var(--border)] bg-white">
-        <div className="border-b border-[var(--border)] px-4 py-3 text-sm font-semibold">
+      <div className="rounded-xl border border-(--border) bg-white">
+        <div className="border-b border-(--border) px-4 py-3 text-sm font-semibold">
           Pending invites
         </div>
-        <div className="divide-y divide-[var(--border)]">
+        <div className="divide-y divide-(--border)">
           {team.data?.data.invites.length ? (
             team.data.data.invites.map((invite) => (
               <div key={invite.id} className="flex items-center gap-3 px-4 py-3">

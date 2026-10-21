@@ -99,10 +99,10 @@ export function VideosTable({
   const someSelected = selectedOnPage > 0 && !allSelected;
 
   return (
-    <div className="overflow-x-auto scroll-thin rounded-xl border border-[var(--border)] bg-white">
+    <div className="overflow-x-auto scroll-thin rounded-xl border border-(--border) bg-white">
       <table className="w-full min-w-[1100px] text-sm">
         <thead>
-          <tr className="border-b border-[var(--border)] text-left text-xs text-gray-500">
+          <tr className="border-b border-(--border) text-left text-xs text-gray-500">
             {selectable ? (
               <th className="w-10 px-3 py-2.5">
                 <HeaderCheckbox
@@ -143,7 +143,7 @@ export function VideosTable({
         <tbody>
           {loading
             ? Array.from({ length: 10 }).map((_, i) => (
-                <tr key={i} className="border-b border-[var(--border)]">
+                <tr key={i} className="border-b border-(--border)">
                   {selectable ? (
                     <td className="px-3 py-3">
                       <div className="skeleton h-4 w-4" />
@@ -159,7 +159,7 @@ export function VideosTable({
             : rows.map((r) => (
                 <tr
                   key={r.id}
-                  className="border-b border-[var(--border)] last:border-0 hover:bg-gray-50"
+                  className="border-b border-(--border) last:border-0 hover:bg-gray-50"
                 >
                   {selectable ? (
                     <td className="px-3 py-2.5">
@@ -168,7 +168,7 @@ export function VideosTable({
                         checked={selectedSet.has(r.id)}
                         onChange={() => onToggleRow?.(r.id)}
                         aria-label={`Select ${r.accountHandle ?? "video"}`}
-                        className="h-4 w-4 rounded border-gray-300 text-brand-600"
+                        className="h-4 w-4 rounded-sm border-gray-300 text-brand-600"
                       />
                     </td>
                   ) : null}
@@ -240,7 +240,7 @@ function HeaderCheckbox({
       checked={checked}
       onChange={onChange}
       aria-label="Select all visible videos"
-      className="h-4 w-4 rounded border-gray-300 text-brand-600"
+      className="h-4 w-4 rounded-sm border-gray-300 text-brand-600"
     />
   );
 }

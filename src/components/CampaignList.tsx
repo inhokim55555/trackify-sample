@@ -225,13 +225,13 @@ export function CampaignList() {
       <button
         onClick={() => setCreatingCampaign((current) => !current)}
         disabled={createAction.busy}
-        className="mb-2 flex w-full items-center gap-2 rounded-md border border-[var(--border)] bg-white px-3 py-2 text-left text-xs font-medium text-gray-600 hover:bg-gray-50"
+        className="mb-2 flex w-full items-center gap-2 rounded-md border border-(--border) bg-white px-3 py-2 text-left text-xs font-medium text-gray-600 hover:bg-gray-50"
       >
         <Plus size={13} />
         <span>New campaign</span>
       </button>
       {creatingCampaign ? (
-        <fieldset disabled={createAction.busy} className="mb-2 space-y-1.5 rounded-lg border border-[var(--border)] bg-white p-2">
+        <fieldset disabled={createAction.busy} className="mb-2 space-y-1.5 rounded-lg border border-(--border) bg-white p-2">
           <label className="block text-[11px] font-medium text-gray-500">
             Campaign name <span className="text-rose-500">*</span>
             <input
@@ -240,7 +240,7 @@ export function CampaignList() {
               onChange={(e) =>
                 setCampaignDraft((current) => ({ ...current, name: e.target.value }))
               }
-              className="mt-1 w-full rounded-md border border-[var(--border)] px-2 py-1.5 text-xs outline-none focus:border-brand-400"
+              className="mt-1 w-full rounded-md border border-(--border) px-2 py-1.5 text-xs outline-hidden focus:border-brand-400"
             />
           </label>
           <label className="block text-[11px] font-medium text-gray-500">
@@ -250,7 +250,7 @@ export function CampaignList() {
               onChange={(e) =>
                 setCampaignDraft((current) => ({ ...current, brand: e.target.value }))
               }
-              className="mt-1 w-full rounded-md border border-[var(--border)] px-2 py-1.5 text-xs outline-none focus:border-brand-400"
+              className="mt-1 w-full rounded-md border border-(--border) px-2 py-1.5 text-xs outline-hidden focus:border-brand-400"
             />
           </label>
           <div className="grid grid-cols-2 gap-1">
@@ -265,7 +265,7 @@ export function CampaignList() {
                     startsAt: e.target.value,
                   }))
                 }
-                className="mt-1 min-w-0 rounded-md border border-[var(--border)] px-2 py-1.5 text-xs outline-none focus:border-brand-400"
+                className="mt-1 min-w-0 rounded-md border border-(--border) px-2 py-1.5 text-xs outline-hidden focus:border-brand-400"
               />
             </label>
             <label className="block text-[11px] font-medium text-gray-500">
@@ -276,19 +276,19 @@ export function CampaignList() {
                 onChange={(e) =>
                   setCampaignDraft((current) => ({ ...current, endsAt: e.target.value }))
                 }
-                className="mt-1 min-w-0 rounded-md border border-[var(--border)] px-2 py-1.5 text-xs outline-none focus:border-brand-400"
+                className="mt-1 min-w-0 rounded-md border border-(--border) px-2 py-1.5 text-xs outline-hidden focus:border-brand-400"
               />
             </label>
           </div>
           {campaignError ? (
-            <div className="rounded bg-rose-50 px-2 py-1 text-[11px] text-rose-600">
+            <div className="rounded-sm bg-rose-50 px-2 py-1 text-[11px] text-rose-600">
               {campaignError}
             </div>
           ) : null}
           <div className="grid grid-cols-2 gap-1">
             <button
               onClick={() => setCreatingCampaign(false)}
-              className="rounded-md border border-[var(--border)] px-2 py-1.5 text-xs text-gray-500 hover:bg-gray-50"
+              className="rounded-md border border-(--border) px-2 py-1.5 text-xs text-gray-500 hover:bg-gray-50"
             >
               Cancel
             </button>
@@ -304,7 +304,7 @@ export function CampaignList() {
         </fieldset>
       ) : null}
       {campaignsLoading ? (
-        <div className="space-y-2 rounded-lg border border-dashed border-[var(--border)] p-3">
+        <div className="space-y-2 rounded-lg border border-dashed border-(--border) p-3">
           <div className="text-xs font-medium text-gray-500">
             Loading campaigns...
           </div>
@@ -316,7 +316,7 @@ export function CampaignList() {
           Campaigns could not load. Refresh to try again.
         </div>
       ) : campaigns.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-[var(--border)] p-3 text-xs text-gray-400">
+        <div className="rounded-lg border border-dashed border-(--border) p-3 text-xs text-gray-400">
           No campaigns configured.
         </div>
       ) : (
@@ -332,13 +332,13 @@ export function CampaignList() {
                 className={`rounded-lg border bg-white transition ${
                   selected
                     ? "border-brand-200 bg-brand-50"
-                    : "border-[var(--border)]"
+                    : "border-(--border)"
                 }`}
               >
                 <div className="flex items-start gap-1 px-2 py-2">
                   <button
                     onClick={() => toggleOpen(campaign.id)}
-                    className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded text-gray-400 hover:bg-gray-100"
+                    className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-sm text-gray-400 hover:bg-gray-100"
                     aria-label={open ? "Collapse campaign" : "Expand campaign"}
                   >
                     <ChevronRight
@@ -387,13 +387,13 @@ export function CampaignList() {
                           current === campaign.id ? null : campaign.id
                         )
                       }
-                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-sm text-gray-400 hover:bg-gray-100 hover:text-gray-600"
                       aria-label={`Campaign actions for ${campaign.name}`}
                     >
                       <MoreHorizontal size={14} />
                     </button>
                     {actionMenuId === campaign.id ? (
-                      <div className="absolute right-0 top-6 z-20 w-36 rounded-lg border border-[var(--border)] bg-white p-1 shadow-lg">
+                      <div className="absolute right-0 top-6 z-20 w-36 rounded-lg border border-(--border) bg-white p-1 shadow-lg">
                         <button
                           onClick={() => {
                             setEditingCampaign(campaign);
@@ -422,7 +422,7 @@ export function CampaignList() {
                 </div>
 
                 {open ? (
-                  <div className="border-t border-[var(--border)] px-2 pb-2 pt-1.5">
+                  <div className="border-t border-(--border) px-2 pb-2 pt-1.5">
                     <CampaignSegmentRow
                       campaign={campaign}
                       segment="seeding"
@@ -592,7 +592,7 @@ function CampaignSegmentRow({
       <Icon size={13} className={selected ? "text-brand-600" : "text-gray-300"} />
       <span>{label}</span>
       {segment.startsWith("custom:") ? (
-        <span className="ml-auto rounded bg-gray-100 px-1.5 py-0.5 text-[9px] uppercase text-gray-400">
+        <span className="ml-auto rounded-sm bg-gray-100 px-1.5 py-0.5 text-[9px] uppercase text-gray-400">
           {trackerKind ?? "seeding"}
         </span>
       ) : null}
@@ -620,11 +620,11 @@ export function SegmentCollectionSelect({ value, options, loading, unavailable =
     void action.run(() => onChange(next), () => setDraft(undefined));
   }
   return <div className="px-8 pb-1">
-    <div className="flex items-center gap-1.5 rounded-md border border-[var(--border)] bg-white px-2 py-1 text-[11px] text-gray-500">
+    <div className="flex items-center gap-1.5 rounded-md border border-(--border) bg-white px-2 py-1 text-[11px] text-gray-500">
       <Link2 size={12} className="shrink-0 text-gray-300" />
       <select aria-label="Linked collection" value={selected}
         disabled={loading || unavailable || action.busy} onChange={(event) => save(event.target.value || null)}
-        className="min-w-0 flex-1 bg-transparent text-[11px] text-gray-600 outline-none disabled:opacity-60">
+        className="min-w-0 flex-1 bg-transparent text-[11px] text-gray-600 outline-hidden disabled:opacity-60">
         <option value="">{loading ? "Loading collections..." : unavailable ? "Collections unavailable" : "No linked collection"}</option>
         {selected && !options.some((option) => option.id === selected) ? <option value={selected} disabled>Current linked collection (details unavailable)</option> : null}
         {options.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
@@ -655,9 +655,9 @@ export function CampaignSubcategoryForm({ onSave, onSaved, onCancel }: {
     <fieldset disabled={action.busy} className="space-y-1">
       <input autoFocus aria-label="Subcategory name" value={name} onChange={(event) => setName(event.target.value)}
         onKeyDown={(event) => { if (event.key === "Escape" && !action.busy) onCancel(); }} placeholder="Subcategory"
-        className="w-full rounded-md border border-[var(--border)] px-2 py-1 text-xs outline-none focus:border-brand-400" />
+        className="w-full rounded-md border border-(--border) px-2 py-1 text-xs outline-hidden focus:border-brand-400" />
       <select aria-label="Subcategory format" value={kind} onChange={(event) => setKind(event.target.value as CampaignTrackerKind)}
-        className="w-full rounded-md border border-[var(--border)] bg-white px-2 py-1 text-xs">
+        className="w-full rounded-md border border-(--border) bg-white px-2 py-1 text-xs">
         <option value="seeding">Seeding format</option><option value="paid">Paid format</option>
       </select>
       <div className="flex gap-2 text-xs">

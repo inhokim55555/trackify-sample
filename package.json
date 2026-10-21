@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node sample/build.mjs",
     "start": "node sample/start.mjs",
-    "test": "node --import tsx --test sample/*.test.mjs"
+    "test": "node --import tsx --test sample/*.test.mjs",
+    "audit:security": "npm audit --audit-level=low"
   },
   "dependencies": {
     "@electric-sql/pglite": "0.5.11",
@@ -20,17 +21,15 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/jsdom": "28.0.3",
     "@types/node": "20.17.6",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
-    "autoprefixer": "10.4.20",
-    "eslint": "9.39.5",
-    "eslint-config-next": "^16.4.2",
     "jsdom": "29.1.1",
     "postcss": "8.5.28",
     "prisma": "5.22.0",
-    "tailwindcss": "3.4.15",
+    "tailwindcss": "^4.3.3",
     "tsx": "^4.22.4",
     "typescript": "5.6.3"
   },

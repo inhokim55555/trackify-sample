@@ -52,7 +52,7 @@ export function KpiCards({
           isActive
             ? "ring-2 ring-brand-500 ring-offset-2"
             : !isSpend
-              ? "hover:-translate-y-0.5 hover:shadow-sm"
+              ? "hover:-translate-y-0.5 hover:shadow-xs"
               : ""
         }`;
 

@@ -49,8 +49,8 @@ export function NotificationCenter() {
       </button>
 
       {open ? (
-        <div className="absolute bottom-7 left-0 z-30 w-80 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-xl">
-          <div className="flex items-center justify-between border-b border-[var(--border)] px-3 py-2">
+        <div className="absolute bottom-7 left-0 z-30 w-80 overflow-hidden rounded-xl border border-(--border) bg-white shadow-xl">
+          <div className="flex items-center justify-between border-b border-(--border) px-3 py-2">
             <h2 className="text-sm font-semibold text-gray-900">Notifications</h2>
             <button
               onClick={() => notifications.reload()}
@@ -75,7 +75,7 @@ export function NotificationCenter() {
                   key={item.id}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block border-b border-[var(--border)] px-3 py-3 last:border-0 hover:bg-gray-50"
+                  className="block border-b border-(--border) px-3 py-3 last:border-0 hover:bg-gray-50"
                 >
                   <div className="flex items-start gap-2">
                     <span

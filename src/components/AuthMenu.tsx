@@ -40,7 +40,7 @@ export function AuthMenu() {
     return (
       <Link
         href="/login"
-        className="flex w-full items-center justify-center rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+        className="flex w-full items-center justify-center rounded-lg border border-(--border) bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
       >
         Sign in
       </Link>
@@ -48,7 +48,7 @@ export function AuthMenu() {
   }
 
   return (
-    <div className="rounded-lg border border-[var(--border)] bg-white p-2">
+    <div className="rounded-lg border border-(--border) bg-white p-2">
       <div className="flex min-w-0 items-center gap-2">
         <UserCircle size={17} className="shrink-0 text-gray-400" />
         <span className="min-w-0 flex-1 truncate text-xs text-gray-600">
