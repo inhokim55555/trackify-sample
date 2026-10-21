@@ -1,0 +1,342 @@
+// Shortimize-clone data model.
+//
+// The app uses Supabase Postgres through Prisma.
+// Browser clients use Supabase Auth only; app tables are read/written by server routes.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// An organisation / workspace. Mirrors Shortimize's multi-tenant top level.
+model Organisation {
+  id        String   @id @default(cuid())
+  name      String
+  plan      String   @default("Scale") // Launch | Scale | Enterprise
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users       User[]
+  teamInvites TeamInvite[]
+  accounts    Account[]
+  videos      Video[]
+  collections Collection[]
+  campaigns   Campaign[]
+  influencers Influencer[]
+  metricRefreshRuns MetricRefreshRun[]
+  metricRefreshLease MetricRefreshLease?
+}
+
+// A team member. Roles observed in Shortimize: Admin, Editor.
+model User {
+  id             String       @id @default(cuid())
+  supabaseUserId String       @unique
+  email          String       @unique
+  name           String?
+  role           String       @default("Editor") // Admin | Editor
+  disabledAt     DateTime?
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  gmailConnection GmailConnection?
+
+  @@index([organisationId])
+}
+
+model GmailConnection {
+  id                    String    @id @default(cuid())
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                String    @unique
+  gmailEmail            String?
+  scope                 String    @default("")
+  encryptedAccessToken  String
+  encryptedRefreshToken String?
+  tokenType             String    @default("Bearer")
+  expiresAt             DateTime?
+  connectedAt           DateTime  @default(now())
+  lastSyncedAt          DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model TeamInvite {
+  id             String       @id @default(cuid())
+  email          String
+  role           String       @default("Editor")
+  status         String       @default("pending") // pending | accepted | revoked
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String
+  invitedById    String?
+  acceptedAt     DateTime?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([organisationId])
+  @@unique([organisationId, email])
+}
+
+// A tracked social account (creator / competitor / brand).
+model Account {
+  id             String       @id @default(cuid())
+  platform       String // tiktok | instagram | youtube | facebook | snapchat | x
+  handle         String
+  displayName    String
+  avatarUrl      String?
+  status         String       @default("active") // active | paused
+  firstTrackedAt DateTime     @default(now())
+  lastRefreshAt  DateTime     @default(now())
+
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String
+
+  videos          Video[]
+  collectionItems CollectionItem[]
+
+  @@unique([organisationId, platform, handle])
+  @@index([organisationId])
+}
+
+// A tracked individual video.
+model Video {
+  id          String   @id @default(cuid())
+  platform    String
+  caption     String
+  thumbnailUrl String?
+  url         String?
+  uploadDate  DateTime
+
+  account   Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId String
+
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String
+
+  dailyMetrics    VideoDailyMetric[]
+  currentMetric   VideoCurrentMetric?
+  collectionItems CollectionItem[]
+
+  @@index([organisationId])
+  @@index([organisationId, platform])
+  @@index([organisationId, uploadDate])
+  @@index([accountId])
+  @@unique([organisationId, url])
+}
+
+// Append-only dated snapshot of a video's cumulative metrics.
+// Weekly refreshes add one row per video per refresh date.
+model VideoDailyMetric {
+  id       String   @id @default(cuid())
+  video    Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  videoId  String
+  date     DateTime // the calendar day this snapshot represents (UTC midnight)
+  views    Int      @default(0)
+  likes    Int      @default(0)
+  comments Int      @default(0)
+  shares   Int      @default(0)
+  saves    Int      @default(0)
+
+  @@unique([videoId, date])
+  @@index([videoId])
+  @@index([date])
+}
+
+// Current cumulative totals for a video. This is separate from historical
+// snapshots so tables can show latest totals while trends use dated captures.
+model VideoCurrentMetric {
+  id         String   @id @default(cuid())
+  video      Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  videoId    String   @unique
+  capturedAt DateTime @default(now())
+  views      Int      @default(0)
+  likes      Int      @default(0)
+  comments   Int      @default(0)
+  shares     Int      @default(0)
+  saves      Int      @default(0)
+  source     String   @default("manual")
+
+  @@index([capturedAt])
+  @@index([views])
+}
+
+// A collection / folder. Self-referential for nesting (Brand -> Paid/Seeding/Affiliate).
+model Collection {
+  id        String   @id @default(cuid())
+  name      String
+  type      String   @default("custom") // brand | paid | seeding | affiliate | custom
+  parent    Collection?  @relation("CollectionTree", fields: [parentId], references: [id], onDelete: Cascade)
+  parentId  String?
+  children  Collection[] @relation("CollectionTree")
+
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String
+  createdAt      DateTime     @default(now())
+
+  items CollectionItem[]
+  campaignSubcategories CampaignSubcategory[]
+
+  @@index([organisationId])
+  @@index([parentId])
+}
+
+// Membership join: collections contain specific videos, not whole accounts.
+model CollectionItem {
+  id           String     @id @default(cuid())
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collectionId String
+
+  account   Account? @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId String?
+
+  video   Video? @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  videoId String?
+
+  @@index([collectionId])
+  @@index([accountId])
+  @@index([videoId])
+  @@unique([collectionId, accountId])
+  @@unique([collectionId, videoId])
+}
+
+// Campaign is separate from Collections: this is influencer relationship
+// management, not video metrics grouping.
+model Campaign {
+  id             String       @id @default(cuid())
+  name           String
+  brand          String
+  stage          String       @default("Planning")
+  budget         Int          @default(0)
+  startsAt       DateTime
+  endsAt         DateTime
+  notes          String       @default("")
+  archivedAt     DateTime?
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  subcategories CampaignSubcategory[]
+  assignments   CampaignInfluencer[]
+  statuses      WorkflowStatus[]
+
+  @@index([organisationId])
+}
+
+model CampaignSubcategory {
+  id          String   @id @default(cuid())
+  campaign    Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  campaignId  String
+  name        String
+  trackerKind String   @default("seeding") // seeding | paid
+  collection  Collection? @relation(fields: [collectionId], references: [id], onDelete: SetNull)
+  collectionId String?
+  createdAt   DateTime @default(now())
+
+  assignments CampaignInfluencer[]
+
+  @@index([campaignId])
+  @@index([collectionId])
+  @@unique([campaignId, name])
+}
+
+model Influencer {
+  id             String       @id @default(cuid())
+  profile        String
+  name           String?
+  email          String?
+  platform       String?
+  followerCount  Int          @default(0)
+  category       String?
+  address        String?
+  city           String?
+  state          String?
+  zipcode        String?
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  assignments CampaignInfluencer[]
+
+  @@index([organisationId])
+  @@unique([organisationId, profile])
+}
+
+model CampaignInfluencer {
+  id              String               @id @default(cuid())
+  campaign        Campaign             @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  campaignId      String
+  influencer      Influencer           @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  influencerId    String
+  subcategory     CampaignSubcategory? @relation(fields: [subcategoryId], references: [id], onDelete: SetNull)
+  subcategoryId   String?
+  trackerKind     String               @default("seeding") // seeding | paid
+  status          String               @default("Open")
+  rate            Int                  @default(0)
+  finalLink       String?
+  contactedAt     DateTime?
+  shippedAt       DateTime?
+  deliveryStatus  String?
+  notes           String               @default("")
+  gmailThreads    Json                 @default("[]")
+  trackerFields   Json                 @default("{}")
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  archivedAt      DateTime?
+
+  @@index([campaignId])
+  @@index([influencerId])
+  @@index([subcategoryId])
+  @@unique([campaignId, influencerId, subcategoryId])
+}
+
+model WorkflowStatus {
+  id         String   @id @default(cuid())
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  campaignId String
+  label      String
+  color      String   @default("gray")
+  createdAt  DateTime @default(now())
+
+  @@index([campaignId])
+  @@unique([campaignId, label])
+}
+
+model MetricRefreshRun {
+  id                  String       @id @default(cuid())
+  organisation        Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  organisationId      String
+  source              String
+  status              String       @default("running") // running | success | partial | failed
+  videosChecked       Int          @default(0)
+  succeeded           Int          @default(0)
+  failed              Int          @default(0)
+  metricsSynced       Int          @default(0)
+  failureSummary      Json         @default("[]")
+  startedAt           DateTime     @default(now())
+  finishedAt          DateTime?
+  createdAt           DateTime     @default(now())
+  lease               MetricRefreshLease?
+
+  @@index([organisationId])
+  @@index([startedAt])
+}
+
+// One active refresh owner per workspace. Completed run history is retained.
+model MetricRefreshLease {
+  organisationId String @id
+  organisation Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  runId String @unique
+  run MetricRefreshRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  deadlineAt DateTime
+  heartbeatAt DateTime
+}
